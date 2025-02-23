@@ -1,0 +1,9 @@
+{
+    "rewrites": [
+      {
+        "source": "/modules/:path*",
+        "destination": "/index.html"
+      }
+    ]
+  }
+  
