@@ -1,8 +1,11 @@
-import express, { Request, Response, NextFunction } from "express";
+import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
-import { log } from "./vite"; // Keep this if logging is necessary
+import { setupVite, serveStatic, log } from "./vite";
+import { createServer } from "http";
 
 const app = express();
+const server = createServer(app);
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
@@ -37,20 +40,35 @@ app.use((req, res, next) => {
   next();
 });
 
-// Register Routes
+// Register API routes
 registerRoutes(app);
 
 // Error Handling Middleware
 app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
   const status = err.status || err.statusCode || 500;
   const message = err.message || "Internal Server Error";
+
+  console.error(`❌ Error: ${status} - ${message}`);
   res.status(status).json({ message });
 });
 
-// ✅ Add this to start the server
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`🚀 Server running on http://localhost:${PORT}`);
-});
+// ✅ Set port dynamically for dev/prod (default: 65444)
+const PORT = process.env.PORT || 65444;
+const isDev = app.get("env") === "development";
 
-export default app;
+// ✅ Setup Vite in development mode
+(async () => {
+  if (isDev) {
+    console.log("🚀 Running in Development Mode (with Vite)");
+    await setupVite(app, server);
+  } else {
+    console.log("⚡ Running in Production Mode (Serving Static Files)");
+    serveStatic(app);
+  }
+
+  const PORT = Number(process.env.PORT) || 65444; // Ensure PORT is a number
+
+  server.listen(PORT, "0.0.0.0", () => {
+    log(`🚀 Server running on http://localhost:${PORT} (${isDev ? "Development" : "Production"})`);
+  });
+})();
