@@ -12,7 +12,8 @@ import {
   Timer,
   Monitor,
   Bot,
-  Sparkles,
+  UploadCloud,
+  Layers,
   Trophy
 } from 'lucide-react';
 
@@ -23,6 +24,20 @@ const modules = [
     icon: MousePointerClick,
     path: '/modules/locators',
     key: 'locators'
+  },
+  {
+    title: 'Relative Locators',
+    description: 'Learn how to use relative locators in Selenium 4',
+    icon: Layers,
+    path: '/modules/relative-locators',
+    key: 'relative-locators'
+  },
+  {
+    title: 'File Upload',
+    description: 'Test file upload functionality',
+    icon: UploadCloud, // Use a file upload icon
+    path: '/modules/file-upload',
+    key: 'file-upload'
   },
   {
     title: 'Iframes',
@@ -89,64 +104,6 @@ const modules = [
   }
 ];
 
-const practiceAreas = [
-  {
-    title: 'Element Location',
-    skills: [
-      'ID selectors',
-      'Class name selectors',
-      'XPath navigation',
-      'CSS selectors',
-      'Data attributes',
-      'Dynamic element handling'
-    ]
-  },
-  {
-    title: 'UI Interactions',
-    skills: [
-      'Form input handling',
-      'Checkbox manipulation',
-      'Radio button selection',
-      'Dropdown menus',
-      'Button clicks',
-      'Text verification'
-    ]
-  },
-  {
-    title: 'Advanced Interactions',
-    skills: [
-      'Drag and drop operations',
-      'Hover state handling',
-      'Calendar date selection',
-      'Modal dialogs',
-      'Alert handling',
-      'Dynamic content loading'
-    ]
-  },
-  {
-    title: 'Window Management',
-    skills: [
-      'Multiple window handling',
-      'Iframe navigation',
-      'Tab switching',
-      'Window resizing',
-      'Pop-up handling',
-      'Context switching'
-    ]
-  },
-  {
-    title: 'Timing & Synchronization',
-    skills: [
-      'Explicit waits',
-      'Implicit waits',
-      'Custom wait conditions',
-      'Loading state handling',
-      'Animation completion detection',
-      'Dynamic content synchronization'
-    ]
-  }
-];
-
 export default function Home() {
   const { progress } = useStore();
 
@@ -168,29 +125,6 @@ export default function Home() {
             Let's level up your automation skills together! Start your testing journey with our interactive modules. 
             Each practice session brings you closer to mastering test automation! ✨
           </p>
-        </div>
-
-        {/* Practice Areas Overview */}
-        <div className="mb-12">
-          <h2 className="text-2xl font-semibold text-emerald-400 mb-6 flex items-center gap-2">
-            <Sparkles className="h-6 w-6" />
-            Practice Areas
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {practiceAreas.map((area) => (
-              <Card key={area.title} className="bg-slate-800/50 p-6 border-slate-700 hover:border-emerald-500/50 transition-all duration-300">
-                <h3 className="text-lg font-semibold text-emerald-400 mb-3">{area.title}</h3>
-                <ul className="space-y-2">
-                  {area.skills.map((skill) => (
-                    <li key={skill} className="text-slate-300 text-sm flex items-center gap-2">
-                      <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full" />
-                      {skill}
-                    </li>
-                  ))}
-                </ul>
-              </Card>
-            ))}
-          </div>
         </div>
 
         {/* Modules Grid */}
