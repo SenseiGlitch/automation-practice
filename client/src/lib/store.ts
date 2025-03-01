@@ -4,7 +4,7 @@ import { type ModuleId, type ModuleProgress } from '@shared/schema';
 
 interface State {
   progress: Record<ModuleId, ModuleProgress>;
-  updateProgress: (moduleId: ModuleId, completed: boolean) => void;
+  updateProgress: (moduleId: string, completed: boolean) => void;
 }
 
 export const useStore = create<State>()(
