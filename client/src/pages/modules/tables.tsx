@@ -15,7 +15,7 @@ interface Action {
 
 const initialData: TableData[] = [
     { id: '1', name: 'Omar Alaa', email: 'omar.qa@example.com', status: 'Active', role: 'QA Engineer' },
-    { id: '2', name: 'Mona Saed', email: 'mona.tester@example.com', status: 'Active', role: 'Automation Tester' },
+    { id: '2', name: 'Lets Study', email: 'll.tester@example.com', status: 'Active', role: 'Automation Tester' },
     { id: '3', name: 'Quality Sensei', email: 'quality.dev@example.com', status: 'Inactive', role: 'Software Developer' },
     { id: '4', name: 'Sensei Glitch', email: 'glitch.qa@example.com', status: 'Active', role: 'Test Automation Ninja' },
 ];
